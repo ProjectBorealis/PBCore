@@ -1,0 +1,221 @@
+stages:
+    - prepare
+    - build
+    - deploy # only releases
+
+init:
+    stage: prepare
+    retry: 2
+    tags:
+        - unreal
+        - windows
+    except:
+        variables:
+            - $CI_COMMIT_MESSAGE =~ /^update binaries to.*/
+    script:
+        - git-lfs install
+        - git-lfs pull
+
+build project:
+    stage: build
+    cache:
+        paths:
+            - Intermediate/Build
+            - Binaries
+    tags:
+        - windows
+        - unreal
+        - whenever
+    only:
+        - pushes
+    except:
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+            - $CI_COMMIT_MESSAGE =~ /^update binaries to.*/
+    script:
+        - git submodule init
+        - call Scripts\PrepareBinaries.bat
+        - call Scripts\CompileBinaries.bat
+        - call Scripts\CompileGameBinaries.bat
+
+package project:
+    stage: build
+    retry: 2
+    cache:
+        paths:
+            - Saved
+            - Intermediate
+            - AutoBuild
+            - Binaries
+    tags:
+        - windows
+        - unreal
+    only:
+        - schedules
+    except:
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+    script:
+        - git submodule init
+        - call Scripts\PrepareBinaries.bat
+        - call Scripts\CompileBinaries.bat
+        - call Scripts\CompileGameBinaries.bat
+        - call Scripts\BuildFiles.bat
+
+update branches:
+    stage: deploy
+    tags:
+        - windows
+    only:
+        refs:
+            - schedules
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+    script: call Scripts\UpdateBranch.bat
+
+#push binaries:
+#    stage: deploy
+#    tags:
+#        - windows
+#        - unreal
+#        - whenever
+#    cache:
+#        paths:
+#            - Binaries
+#    only:
+#        - master
+#    except:
+#        variables:
+#            - $CI_PROCESS_TYPE == "merge"
+#            - $CI_COMMIT_MESSAGE =~ /^update binaries to.*/
+#    script:
+#        - call Scripts\PushBinaries.bat
+#        - RD Binaries /S /Q
+        
+deploy nightly:
+    stage: deploy
+    tags:
+        - windows
+        - unreal
+    cache:
+        paths:
+            - Saved
+            - Intermediate
+            - AutoBuild
+    only:
+        refs:
+            - schedules
+        variables:
+            - $CI_COMMIT_REF_NAME == "dev"
+    except:
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+    script: 
+        - call Scripts\Archive.bat
+        - RD Intermediate\Staging /S /Q
+        - RD Saved\StagedBuilds /S /Q
+        - RD Saved\Temp /S /Q
+        - RD Saved\TmpPackaging /S /Q
+        - RD Saved\Logs /S /Q
+        - RD AutoBuild /S /Q
+    artifacts:
+        name: "Project Borealis-%CI_COMMIT_REF_NAME%-build"
+        expire_in: 1 day
+        paths:
+            - AutoBuild_Archive\project_borealis.exe
+
+deploy changelist:
+    stage: deploy
+    tags:
+        - windows
+        - unreal
+    cache:
+        paths:
+            - Saved
+            - Intermediate
+            - AutoBuild
+    only:
+        refs:
+            - schedules
+        variables:
+            - $CI_COMMIT_REF_NAME == "master"
+    except:
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+    script: 
+        - call Scripts\Archive.bat
+        - RD Intermediate\Staging /S /Q
+        - RD Saved\StagedBuilds /S /Q
+        - RD Saved\Temp /S /Q
+        - RD Saved\TmpPackaging /S /Q
+        - RD Saved\Logs /S /Q
+        - RD AutoBuild /S /Q
+    artifacts:
+        name: "Project Borealis-%CI_COMMIT_REF_NAME%-build"
+        expire_in: 1 week
+        paths:
+            - AutoBuild_Archive\project_borealis.exe
+            
+deploy snapshot:
+    stage: deploy
+    tags:
+        - windows
+        - unreal
+    cache:
+        paths:
+            - Saved
+            - Intermediate
+            - AutoBuild
+    only:
+        refs:
+            - schedules
+        variables:
+            - $CI_COMMIT_REF_NAME == "stable"
+    except:
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+    script: 
+        - call Scripts\Archive.bat
+        - RD Intermediate\Staging /S /Q
+        - RD Saved\StagedBuilds /S /Q
+        - RD Saved\Temp /S /Q
+        - RD Saved\TmpPackaging /S /Q
+        - RD Saved\Logs /S /Q
+        - RD AutoBuild /S /Q
+    artifacts:
+        name: "Project Borealis-%CI_COMMIT_REF_NAME%-build"
+        expire_in: 2 weeks
+        paths:
+            - AutoBuild_Archive\project_borealis.exe
+
+deploy release:
+    stage: deploy
+    tags:
+        - windows
+        - unreal
+    cache:
+        paths:
+            - Saved
+            - Intermediate
+            - AutoBuild
+    only:
+        refs:
+            - schedules
+            - $CI_COMMIT_REF_NAME == "release"
+        variables:
+    except:
+        variables:
+            - $CI_PROCESS_TYPE == "merge"
+    script: 
+        - call Scripts\Archive.bat
+        - RD Intermediate\Staging /S /Q
+        - RD Saved\StagedBuilds /S /Q
+        - RD Saved\Temp /S /Q
+        - RD Saved\TmpPackaging /S /Q
+        - RD Saved\Logs /S /Q
+        - RD AutoBuild /S /Q
+    artifacts:
+        name: "Project Borealis-%CI_COMMIT_REF_NAME%-build"
+        expire_in: 1 month
+        paths:
+            - AutoBuild_Archive\project_borealis.exe

@@ -1,7 +1,7 @@
 stages:
     - prepare
     - build
-    - deploy # only releases
+    - deploy
 
 init:
     stage: prepare
@@ -12,6 +12,7 @@ init:
     except:
         variables:
             - $CI_COMMIT_MESSAGE =~ /^update binaries to.*/
+            - $CI_COMMIT_MESSAGE =~ /^CI-SKIP*/
     script:
         - git-lfs install
         - git-lfs pull
@@ -27,16 +28,23 @@ build project:
         - unreal
         - whenever
     only:
-        - pushes
+        refs:
+            - dev
+            - merge_requests
+        changes:
+            - Source/**
+            - Scripts/**
+            - .gitlab-ci.yml
     except:
         variables:
-            - $CI_PROCESS_TYPE == "merge"
             - $CI_COMMIT_MESSAGE =~ /^update binaries to.*/
+            - $CI_COMMIT_MESSAGE =~ /^CI-SKIP*/
     script:
+        - .\ue4versionator.exe -user-config .ue4v-gitlab-user
         - git submodule init
-        - call Scripts\PrepareBinaries.bat
-        - call Scripts\CompileBinaries.bat
-        - call Scripts\CompileGameBinaries.bat
+        - .\Scripts\PrepareBinaries.bat
+        - .\Scripts\CompileBinaries.bat
+        - .\Scripts\CompileGameBinaries.bat
 
 package project:
     stage: build
@@ -52,15 +60,13 @@ package project:
         - unreal
     only:
         - schedules
-    except:
-        variables:
-            - $CI_PROCESS_TYPE == "merge"
     script:
+        - .\ue4versionator.exe -user-config .ue4v-gitlab-user
         - git submodule init
-        - call Scripts\PrepareBinaries.bat
-        - call Scripts\CompileBinaries.bat
-        - call Scripts\CompileGameBinaries.bat
-        - call Scripts\BuildFiles.bat
+        - .\Scripts\PrepareBinaries.bat
+        - .\Scripts\CompileBinaries.bat
+        - .\Scripts\CompileGameBinaries.bat
+        - .\Scripts\BuildFiles.bat
 
 update branches:
     stage: deploy
@@ -69,28 +75,25 @@ update branches:
     only:
         refs:
             - schedules
-        variables:
-            - $CI_PROCESS_TYPE == "merge"
-    script: call Scripts\UpdateBranch.bat
+    script: .\Scripts\UpdateBranch.bat
 
-#push binaries:
-#    stage: deploy
-#    tags:
-#        - windows
-#        - unreal
-#        - whenever
-#    cache:
-#        paths:
-#            - Binaries
-#    only:
-#        - master
-#    except:
-#        variables:
-#            - $CI_PROCESS_TYPE == "merge"
-#            - $CI_COMMIT_MESSAGE =~ /^update binaries to.*/
-#    script:
-#        - call Scripts\PushBinaries.bat
-#        - RD Binaries /S /Q
+deploy binaries:
+    stage: deploy
+    tags:
+        - windows
+        - unreal
+        - whenever
+    only:
+        changes:
+            - Config/DefaultGame.ini
+            - Scripts/**
+            - Plugins/**/*.uplugin
+            - ./ProjectBorealis.uproject
+    except:
+        refs:
+            - schedules
+    script:
+        - .\Scripts\PushBinaries.bat
         
 deploy nightly:
     stage: deploy
@@ -107,11 +110,8 @@ deploy nightly:
             - schedules
         variables:
             - $CI_COMMIT_REF_NAME == "dev"
-    except:
-        variables:
-            - $CI_PROCESS_TYPE == "merge"
     script: 
-        - call Scripts\Archive.bat
+        - .\Scripts\Archive.bat
         - RD Intermediate\Staging /S /Q
         - RD Saved\StagedBuilds /S /Q
         - RD Saved\Temp /S /Q
@@ -139,11 +139,8 @@ deploy changelist:
             - schedules
         variables:
             - $CI_COMMIT_REF_NAME == "master"
-    except:
-        variables:
-            - $CI_PROCESS_TYPE == "merge"
     script: 
-        - call Scripts\Archive.bat
+        - .\Scripts\Archive.bat
         - RD Intermediate\Staging /S /Q
         - RD Saved\StagedBuilds /S /Q
         - RD Saved\Temp /S /Q
@@ -171,11 +168,8 @@ deploy snapshot:
             - schedules
         variables:
             - $CI_COMMIT_REF_NAME == "stable"
-    except:
-        variables:
-            - $CI_PROCESS_TYPE == "merge"
     script: 
-        - call Scripts\Archive.bat
+        - .\Scripts\Archive.bat
         - RD Intermediate\Staging /S /Q
         - RD Saved\StagedBuilds /S /Q
         - RD Saved\Temp /S /Q
@@ -203,11 +197,8 @@ deploy release:
             - schedules
             - $CI_COMMIT_REF_NAME == "release"
         variables:
-    except:
-        variables:
-            - $CI_PROCESS_TYPE == "merge"
     script: 
-        - call Scripts\Archive.bat
+        - .\Scripts\Archive.bat
         - RD Intermediate\Staging /S /Q
         - RD Saved\StagedBuilds /S /Q
         - RD Saved\Temp /S /Q

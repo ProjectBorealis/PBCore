@@ -1,11 +1,17 @@
 @echo off
 
+setlocal
 set mypath=%~dp0
 
-for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do (
-  set InstallDir=%%i
+call ..\..\ue4\%ENGINE_VERSION%\Engine\Build\BatchFiles\GetMSBuildPath.bat
+if errorlevel 1 goto Error
+
+if exist %MSBUILD_EXE% (
+  %MSBUILD_EXE% "%mypath%..\ProjectBorealis.sln" /nologo /verbosity:quiet /t:build /property:configuration="Development" /property:Platform=Win64
 )
 
-if exist "%InstallDir%\MSBuild\15.0\Bin\amd64\MSBuild.exe" (
-  "%InstallDir%\MSBuild\15.0\Bin\amd64\MSBuild.exe" "%mypath%\..\ProjectBorealis.sln" /t:build /p:configuration="Development";Platform=Win64;verbosity=diagnostic
-)
+exit /B 0
+
+:Error
+exit /B 1
+

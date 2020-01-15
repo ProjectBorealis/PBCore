@@ -5,10 +5,12 @@
 	untrackedCache = true
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab,tabwidth=4
 	splitIndex = true
+	multiPackIndex = true
+	sparseCheckout = true
 	commitGraph = true
 	autocrlf = true
-	fsmonitor = git-hooks/query-watchman
-	hooksPath = git-hooks/
+	fsmonitor = git-watchman/query-watchman
+	hooksPath = git-hooks
 	fscache = true
 	checkStat = minimal
 [protocol]
@@ -23,9 +25,32 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [lfs]
-	batch = 1
-	setlockablereadonly = 1
+	batch = true
+	setlockablereadonly = true
 	concurrenttransfers = 15
-	tustransfers = 1
+	tustransfers = true
 [index]
 	threads = true
+[merge]
+	conflictstyle = diff3
+[blame]
+	coloring = highlightRecent
+[fetch]
+	prune = true
+	pruneTags = true
+[help]
+	autoCorrect = 5
+[pack]
+	threads = 0
+	useSparse = true
+[push]
+	default = current
+[pull]
+	rebase = merges
+[repack]
+	writeBitmaps = true
+[rebase]
+	autoStash = true
+[feature]
+	manyFiles = true
+	experimental = true

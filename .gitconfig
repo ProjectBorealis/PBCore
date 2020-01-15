@@ -19,25 +19,13 @@
 [rerere]
 	enabled = true
 	autoupdate = true
-[status]
-	submodulesummary = 1
-[push]
-	recurseSubmodules = on-demand
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [lfs]
-	batch = true
-	setlockablereadonly = true
+	batch = 1
+	setlockablereadonly = 1
 	concurrenttransfers = 15
-	tustransfers = true
-	skipdownloaderrors = true
-	allowincompletepush = true
-	forceprogress = true
-[submodule]
-	fetchJobs = 4
+	tustransfers = 1
 [index]
 	threads = true
-[http]
-	maxRequests = 15
-	postBuffer = 10485760

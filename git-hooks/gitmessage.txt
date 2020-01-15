@@ -1,7 +1,7 @@
 
 # Commit message format
 #----------------------------------#
-# <type>([scope]): <subject>
+# <type>(<scope>): <subject>
 
 # [body]
 
@@ -12,6 +12,7 @@
 
 # * feat: a new feature
 # * fix: a bug fix
+# * opt: optimization
 # * docs: a change to docs or comments
 # * style: style changes to the code that do not actually change the result
 # * refactor: organizational/structural adjustments to code,
@@ -19,16 +20,16 @@
 # * test: anything to do with tests
 # * chore: any repo maintenance, build config changes
 
-# Commit scope is an optional classifier which describes the system
-# that you changed. This depends on the committer, but it could be,
-# but not limited to, the following:
+# Commit scope is also a required classifier which describes the system
+# that you changed. It could be, but not limited to, the following:
 
 # * weapons
 # * render
-# * hud
 # * config
-# * logic
 # * ai
+# * infrastructure
+# * core
+# etc.
 
 # The commit message subject is an imperative, present-tense statement
 # that describes the change in 50 characters or less.
@@ -40,6 +41,6 @@
 # list as a summary of changes if you don't want to write it in paragraphs.
 
 # Finally, the commit footer. This is optional and should be reserved
-# for linking commits to GitLab issues (ex. Fixes #1), and documenting
+# for linking commits to issue tracker issues (ex. Fixes #1), and documenting
 # breaking changes or additional required steps for developers.
 # These warnings should be labeled with "BREAKING CHANGE:"

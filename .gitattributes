@@ -8,7 +8,8 @@
 *.probebox lfs
 *.probebatch lfs
 *.bakedsources lfs
-*.phononsceneinfo lfs
 *.dll lfs
 *.pdb lfs
 *.exe lfs
+*.pak lfs
+*.bin lfs

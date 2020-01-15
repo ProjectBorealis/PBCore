@@ -1,4 +1,4 @@
-/Binaries
+**/Binaries
 
 PBGet/*-*
 
@@ -162,6 +162,12 @@ Intermediate
 # Cache files for the editor to use
 DerivedDataCache/*
 
+# PBSync
+Backup/*
+pbsync_log.txt
+PBSyncTemp/*
+.pbsync_err
+
 # Log files written by the Editor for certain systems
 Logs/*
 
@@ -223,3 +229,6 @@ $RECYCLE.BIN/
 
 # ue4versionator
 .ue4v-user
+
+# lfs bug
+lfs/

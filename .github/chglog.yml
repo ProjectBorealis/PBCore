@@ -1,0 +1,31 @@
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: [REDACTED]
+options:
+  commits:
+    # filters:
+    #   Type:
+    #     - feat
+    #     - fix
+    #     - perf
+    #     - refactor
+  commit_groups:
+    title_maps:
+      feat: Features
+      fix: Bug Fixes
+      opt: Performance Improvements
+      refactor: Code Refactoring
+      style: Code Style Changes
+      doc: Documentation
+      chore: Other
+  header:
+    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Scope
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE

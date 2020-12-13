@@ -1,0 +1,3 @@
+[submodule ".github/doxygen/that_style"]
+	path = .github/doxygen/that_style
+	url = https://github.com/ProjectBorealis/that_style.git

@@ -1,0 +1,15 @@
+name: Sync promoted
+
+on:
+  push:
+    branches: [ stable ]
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Merge stable -> promoted
+      uses: everlytic/branch-merge@master
+      with:
+        target_branch: promoted

@@ -1,0 +1,6 @@
+[ue4v-user]
+download_dir = UE4V_INSTALLATION_ROOT
+[dispatch]
+app_id = DISPATCH_APP_ID
+internal_bid = DISPATCH_INTERNAL_BID
+playtester_bid = DISPATCH_PLAYTESTER_BID

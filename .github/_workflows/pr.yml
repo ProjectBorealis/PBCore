@@ -1,0 +1,29 @@
+name: Pull Request Action
+on: [pull_request]
+
+jobs:
+  check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+# TODO: requires compilation database generated using Bear (see https://github.com/Ericsson/codechecker/issues/1971)
+#    - name: Clang Tidy
+#      uses: muxee/clang-tidy-action@0.0.1-rc1
+#      env:
+#        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Clang Format
+      uses: DoozyX/clang-format-lint-action@v0.5
+      with:
+        source: './Source'
+        extensions: 'cpp,h'
+  label:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Labeler
+      uses: actions/labeler@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

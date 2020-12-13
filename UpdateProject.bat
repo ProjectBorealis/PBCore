@@ -3,7 +3,7 @@ IF EXIST ".git\index.lock" DEL /F ".git\index.lock"
 CALL :CHECK_FAIL
 git fetch origin promoted master trunk
 CALL :CHECK_FAIL
-git restore -qWSs origin/promoted -- PBSync.exe PBSync.xml ProjectBorealis.uproject Config/DefaultGame.ini .md5
+git restore -qWSs origin/promoted -- PBSync.exe PBSync.xml
 CALL :CHECK_FAIL
 IF EXIST "PBSyncTemp" rd PBSyncTemp /s /q
 CALL :CHECK_FAIL
@@ -14,7 +14,7 @@ if NOT ["%errorlevel%"]==["1"] (
 )
 git restore -qWSs HEAD PBSync.exe PBSync.xml
 CALL :CHECK_FAIL
-PBSyncTemp\PBSync.exe --config PBSyncTemp/PBSync.xml --sync partial
+PBSyncTemp\PBSync.exe --config PBSyncTemp/PBSync.xml --sync all
 CALL :CHECK_FAIL
 rd PBSyncTemp /s /q
 CALL :CHECK_FAIL

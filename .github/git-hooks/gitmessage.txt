@@ -41,6 +41,6 @@
 # list as a summary of changes if you don't want to write it in paragraphs.
 
 # Finally, the commit footer. This is optional and should be reserved
-# for linking commits to issue tracker issues (ex. Fixes #1), and documenting
+# for linking commits to isse tracker issues (ex. Fixes #1), and documenting
 # breaking changes or additional required steps for developers.
 # These warnings should be labeled with "BREAKING CHANGE:"

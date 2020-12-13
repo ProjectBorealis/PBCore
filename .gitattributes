@@ -1,15 +1,29 @@
+[attr]lock filter=lfs diff=lfs merge=binary -text lockable
+[attr]lfs filter=lfs diff=lfs merge=binary -text
 # Unreal Engine file types.
-[attr]lock filter=lfs diff=lfs merge=lfs -text lockable
-[attr]lfs filter=lfs diff=lfs merge=lfs -text
 *.uasset lock
 *.umap lock
-*.wav lfs
+*.locres lfs
+*.locmeta lfs
+# Steam Audio files
 *.phononscene lfs
 *.probebox lfs
 *.probebatch lfs
 *.bakedsources lfs
-*.dll lfs
-*.pdb lfs
+# Binaries
 *.exe lfs
-*.pak lfs
-*.bin lfs
+*.dll lfs
+# FMOD
+*.bank lfs
+*.wav lfs
+*.mp3 lfs
+*.ogg lfs
+*.flac lfs
+# Icons
+*.png lfs
+*.ico lfs
+*.icns lfs
+# Movies
+*.webm lfs
+*.mp4 lfs
+*.wmv lfs

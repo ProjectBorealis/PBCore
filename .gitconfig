@@ -1,56 +1,88 @@
 [remote "origin"]
 	tagOpt = --no-tags
 	prune = true
+	pruneTags = true
 [core]
-	untrackedCache = true
-	whitespace = trailing-space,space-before-tab,indent-with-non-tab,tabwidth=4
+	whitespace = cr-at-eol,trailing-space,space-before-tab,indent-with-non-tab,tabwidth=4
+	preloadIndex = true
 	splitIndex = true
-	multiPackIndex = true
-	sparseCheckout = true
 	commitGraph = true
-	autocrlf = true
-	fsmonitor = git-watchman/query-watchman
-	hooksPath = git-hooks
+	autocrlf = false
+	safecrlf = false
+	hooksPath = .github/git-hooks
 	fscache = true
 	checkStat = minimal
-[protocol]
-	version = 2
+	trustctime = false
+[commit]
+	template = git-hooks/gitmessage.txt
 [gc]
-	auto = 100
-	writeCommitGraph = true
+	auto = 0
+	writeCommitGraph = false
+	pruneExpire = 1.weeks.ago
 [rerere]
 	enabled = true
 	autoupdate = true
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+[lfs "https://github.com/"]
+	locksverify = true
 [lfs]
+	allowincompletepush = true
+	skipdownloaderrors = true
 	batch = true
 	setlockablereadonly = true
-	concurrenttransfers = 15
 	tustransfers = true
+	pruneverifyremotealways = true
+	fetchrecentrefsdays = 0
+	pruneoffsetdays = 7
+	fetchrecentremoterefs = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [index]
 	threads = true
 [merge]
 	conflictstyle = diff3
+	stat = false
 [blame]
 	coloring = highlightRecent
 [fetch]
 	prune = true
 	pruneTags = true
+	writeCommitGraph = false
 [help]
 	autoCorrect = 5
 [pack]
 	threads = 0
+	useBitmaps = false
 	useSparse = true
 [push]
 	default = current
 [pull]
 	rebase = merges
 [repack]
-	writeBitmaps = true
+	writeBitmaps = false
+[receive]
+	autogc = false
 [rebase]
 	autoStash = true
 [feature]
 	manyFiles = true
 	experimental = true
+[alias]
+	fm = fetch origin master
+	ro = rebase origin/master
+	pf = push --force-with-lease
+	up = !git fm && git ro
+	send = !git add -A Source && git commit -a && git push
+	pup = !git up && git pf
+[checkout]
+	optimizenewbranch = true
+[am]
+	keepcr = true
+[reset]
+	quiet = true
+[status]
+	aheadbehind = false
+[gui]
+	gcwarning = false

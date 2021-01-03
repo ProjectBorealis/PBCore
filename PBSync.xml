@@ -7,9 +7,11 @@
     </project>
     <git>
         <version>2.29.0.vfs.0.0</version>
-        <lfsversion>git-lfs/2.12.1</lfsversion>
+        <lfsversion>2.13.1</lfsversion>
+        <gcmversion>2.0.289</gcmversion>
+        <gcmversionsuffix>-beta</gcmversionsuffix>
+        <gcmsuffix>48418</gcmsuffix>
         <expectedbranch>promoted</expectedbranch>
-        <lfslockurl>[REDACTED]</lfslockurl>
         <url>[REDACTED]</url>
         <checksumfile>.md5</checksumfile>
     </git>

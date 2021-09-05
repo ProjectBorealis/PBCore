@@ -5,6 +5,7 @@
 [core]
 	whitespace = cr-at-eol,trailing-space,space-before-tab,indent-with-non-tab,tabwidth=4
 	preloadIndex = true
+	multiPackIndex = true
 	splitIndex = true
 	commitGraph = true
 	autocrlf = false
@@ -13,26 +14,26 @@
 	fscache = true
 	checkStat = minimal
 	trustctime = false
+	useBuiltinFSMonitor = true
 [commit]
-	template = git-hooks/gitmessage.txt
+	template = .github/git-hooks/gitmessage.txt
 [gc]
 	auto = 0
 	writeCommitGraph = false
 	pruneExpire = 1.weeks.ago
 [rerere]
 	enabled = true
-	autoupdate = true
+	autoupdate = false
 [lfs "https://github.com/"]
 	locksverify = true
 [lfs]
-	allowincompletepush = true
 	skipdownloaderrors = true
 	batch = true
 	setlockablereadonly = true
 	tustransfers = true
 	pruneverifyremotealways = true
 	fetchrecentrefsdays = 0
-	pruneoffsetdays = 7
+	pruneoffsetdays = 0
 	fetchrecentremoterefs = false
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -40,28 +41,25 @@
 	process = git-lfs filter-process
 	required = true
 [index]
-	threads = true
+	threads = 0
 [merge]
 	conflictstyle = diff3
 	stat = false
+	tool = p4merge_pb
 [blame]
 	coloring = highlightRecent
 [fetch]
 	prune = true
 	pruneTags = true
-	writeCommitGraph = false
 [help]
 	autoCorrect = 5
 [pack]
 	threads = 0
-	useBitmaps = false
-	useSparse = true
 [push]
 	default = current
 [pull]
 	rebase = merges
-[repack]
-	writeBitmaps = false
+	ff = only
 [receive]
 	autogc = false
 [rebase]
@@ -70,14 +68,37 @@
 	manyFiles = true
 	experimental = true
 [alias]
-	fm = fetch origin master
-	ro = rebase origin/master
-	pf = push --force-with-lease
+	fm = fetch origin main
+	ro = rebase origin/main
+	pf = push --force-with-lease --force-if-includes
 	up = !git fm && git ro
 	send = !git add -A Source && git commit -a && git push
 	pup = !git up && git pf
+	s = -c color.status=always status -sb
+	state = "!f(){ \
+				deco_bold='\\x1b[1m'; \
+				deco_invert='\\x1b[7m'; \
+				git_status=$(git -c color.status=always status -sb); \
+				git_lfs_valid=$(git lfs status --porcelain); \
+				echo \"$git_status\"; \
+				if [[ -n \"$git_lfs_valid\" ]]; then \
+					git_lfs_status=$(git -c color.status=always lfs status); \
+					divider='\n------- git-lfs status -------\\x1b[00m'; \
+					echo -e \"${deco_bold}${deco_invert}$divider\n\"; \
+					echo \"$git_lfs_status\"; \
+				fi; \
+			}; \
+			f"
+	deletebranch = !sh -c 'git branch -d $1 | git push origin --delete $1' -
+	lard = "!git rev-list --all --objects | sed -n $(git rev-list --objects --all | cut -f1 -d' ' | git cat-file --batch-check | grep blob | sort -n -k 3 | tail -n40 | while read hash type size; do echo -n \"-e s/$hash/$size/p \"; done) | sort -n -k1"
+	last = log -1 HEAD
+	uncommit = git reset --soft HEAD^
+	prettylog =  "!git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=short | column -ts'|' | less -r"
+	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	full-verify = fsck --full --strict -v --progress
 [checkout]
 	optimizenewbranch = true
+	workers = 0
 [am]
 	keepcr = true
 [reset]
@@ -86,3 +107,24 @@
 	aheadbehind = false
 [gui]
 	gcwarning = false
+[difftool]
+	prompt = false
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green bold
+	changed = cyan
+	untracked = magenta reverse
+[mergetool "p4merge_pb"]
+	cmd = .github/p4merge/p4merge.exe $BASE $LOCAL $REMOTE $MERGED
+[maintenance]
+	auto = false

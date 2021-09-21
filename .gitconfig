@@ -32,7 +32,7 @@
 	setlockablereadonly = true
 	tustransfers = true
 	pruneverifyremotealways = true
-	fetchrecentrefsdays = 0
+	fetchrecentrefsdays = 1
 	pruneoffsetdays = 0
 	fetchrecentremoterefs = false
 [filter "lfs"]
@@ -63,7 +63,7 @@
 [receive]
 	autogc = false
 [rebase]
-	autoStash = true
+	autostash = true
 [feature]
 	manyFiles = true
 	experimental = true

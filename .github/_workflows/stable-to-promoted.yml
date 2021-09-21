@@ -1,4 +1,4 @@
-name: Sync promoted
+name: stable -> promoted
 
 on:
   push:

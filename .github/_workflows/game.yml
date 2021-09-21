@@ -1,0 +1,72 @@
+name: Game Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: The dispatch build type
+        required: true
+        default: 'internal'
+  push:
+    branches: [promoted]
+    paths:
+      - .github/workflows/game.yml
+      - Build/**
+      - Config/Localization/*
+      - Config/DefaultEngine.ini
+      - Config/DefaultGame.ini
+      - Config/DefaultGameUserSettings.ini
+      - Config/DefaultGameplayTags.ini
+      - Config/DefaultInput.ini
+      - Config/DefaultScalability.ini
+      - Content/**
+      - Shaders/**
+
+concurrency:
+  group: build
+
+jobs:
+  game:
+    runs-on: [self-hosted, windows, x64]
+    
+    env:
+      DISPATCH_APP_ID: ${{ secrets.DISPATCH_APP_ID }}
+      DISPATCH_INTERNAL_BID: ${{ secrets.DISPATCH_INTERNAL_BID }}
+      DISPATCH_PLAYTESTER_BID: ${{ secrets.DISPATCH_PLAYTESTER_BID }}
+      DISPATCH_RELEASE_BID: ${{ secrets.DISPATCH_RELEASE_BID }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          clean: false
+          lfs: true
+      - name: Download LFS assets
+        run: |
+          git-lfs checkout
+          git-lfs prune
+      - name: Update Submodules
+        run: git submodule update --init -- Plugins
+      - name: Prepare Dispatch
+        run: |
+          dispatch --version
+          @{BotCredentials=@{application_id="$Env:DISPATCH_APP_ID";token="$Env:DISPATCH_TOKEN"}} | ConvertTo-Json | New-Item -force $HOME\.dispatch\credentials.json
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+      - name: Update Engine
+        run: |
+          .\PBSync.exe --sync engine
+      - name: Build Internal
+        if: ${{ github.event_name == 'push' || github.event.inputs.type == 'internal' }}
+        run: |
+          .\PBSync.exe --build internal
+      - name: Build Playtester
+        if: ${{ github.event.inputs.type == 'playtester' || github.event.inputs.type == 'release' }}
+        run: |
+          .\PBSync.exe --build game
+      - name: Publish
+        run: |
+          .\PBSync.exe --publish $Env:DISPATCH_BUILD_TYPE --dispatch dispatch
+        env:
+          DISPATCH_BUILD_TYPE: ${{ github.event.inputs.type || 'internal' }}

@@ -1,15 +1,15 @@
-name: master -> trunk
+name: main -> trunk
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Merge master -> trunk
+    - name: Merge main -> trunk
       uses: everlytic/branch-merge@master
       with:
         target_branch: trunk

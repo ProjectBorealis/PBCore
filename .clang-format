@@ -64,7 +64,7 @@ PenaltyBreakAssignment: 18
 PenaltyBreakBeforeFirstCallParameter: 5
 PenaltyBreakComment: 10
 PenaltyBreakFirstLessLess: 3
-PenaltyBreakString: 20
+PenaltyBreakString: 60
 PenaltyBreakTemplateDeclaration: 7
 PenaltyExcessCharacter: 1
 PenaltyReturnTypeOnItsOwnLine: 50

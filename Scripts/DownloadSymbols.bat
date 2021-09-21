@@ -1,2 +1,4 @@
-cd ..
-"ue4versionator.exe"  --with-symbols
+@echo off
+pushd ..
+"ueversionator.exe"  --with-symbols
+popd

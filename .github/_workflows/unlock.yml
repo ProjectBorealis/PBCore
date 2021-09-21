@@ -1,0 +1,25 @@
+name: Unlock File
+
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: Path to file to unlock, like Content/Test.uasset
+        required: true
+
+jobs:
+  unlock:
+    runs-on: [self-hosted, windows, x64]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          clean: false
+          lfs: true
+          token: ${{ secrets.REPO_TOKEN }}
+      - name: Unlock File
+        run: git-lfs unlock -f $Env:GIT_LFS_UNLOCK_FILE
+        env:
+          GIT_LFS_UNLOCK_FILE: ${{ github.event.inputs.file }}

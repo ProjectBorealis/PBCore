@@ -1,0 +1,67 @@
+name: Build
+
+on:
+  push:
+    branches: [promoted]
+    paths:
+      - ProjectBorealis.uproject
+      - Source/**
+      - Plugins/**
+      - .github/workflows/build.yml
+
+concurrency:
+  group: build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: [self-hosted, windows, x64]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.REPO_TOKEN }}
+          clean: false
+          lfs: true
+      - name: Download LFS assets
+        run: |
+          git-lfs checkout
+          git-lfs prune
+      - name: Update Submodules
+        run: git submodule update --init -- Plugins
+      - name: Update Engine
+        run: |
+          .\PBSync.exe --sync engine
+      - name: Generate Project Files
+        run: |
+          .\PBSync.exe --build sln
+      - name: Clean Binaries
+        run: |
+          Remove-Item -Recurse Binaries
+      - name: Build
+        run: |
+          .\PBSync.exe --build source
+      - name: Version
+        run: |
+          .\PBSync.exe --autoversion hotfix
+      - name: Package
+        run: |
+          .\PBSync.exe --build package
+      - name: Commit and Push
+        run: |
+          git commit -am "chore(version): hotfix release from $Env:GITHUB_SHA"
+          git pull
+          git config user.name "Project Borealis"
+          git config user.email "info@projectborealis.com"
+          git push
+      - name: Release
+        run: |
+          .\PBSync.exe --build release
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+      - name: Inspect All
+        run: |
+          .\PBSync.exe --build inspectall
+        continue-on-error: true

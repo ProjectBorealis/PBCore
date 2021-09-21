@@ -1,4 +1,4 @@
-name: promoted -> master
+name: promoted -> main
 
 on:
   push:
@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Merge promoted -> master
+    - name: Merge promoted -> main
       uses: everlytic/branch-merge@master
       with:
-        target_branch: master
+        target_branch: main
         github_token: ${{ secrets.REPO_TOKEN }}

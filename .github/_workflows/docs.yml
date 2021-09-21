@@ -1,0 +1,39 @@
+name: Docs
+on:
+  push:
+    branches: [ promoted ]
+    paths:
+      - .github/doxygen/**
+      - .github/workflows/docs.yml
+      - Documentation/md/**
+      - Source/**
+
+concurrency:
+  group: docs
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ secrets.REPO_TOKEN }}
+    - name: Update Submodule
+      run: git submodule update --init -- .github/doxygen/that_style
+    - name: Install Doxygen
+      run: |
+        sudo add-apt-repository universe
+        sudo apt-get update
+        sudo apt-get install doxygen graphviz
+    - name: Run Doxygen
+      run: doxygen .github/doxygen/Doxyfile
+    - name: Push docs
+      run: |
+        git pull
+        git config user.name "Project Borealis"
+        git config user.email "info@projectborealis.com"
+        git add -A Documentation/html
+        (git commit -m "docs(doxy): doxygen build for $GITHUB_SHA" && git push) || true

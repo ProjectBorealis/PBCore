@@ -3,27 +3,61 @@ on: [pull_request]
 
 jobs:
   check:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
 # TODO: requires compilation database generated using Bear (see https://github.com/Ericsson/codechecker/issues/1971)
 #    - name: Clang Tidy
 #      uses: muxee/clang-tidy-action@0.0.1-rc1
 #      env:
 #        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Clang Format
-      uses: DoozyX/clang-format-lint-action@v0.5
+      uses: DoozyX/clang-format-lint-action@v0.12
       with:
         source: './Source'
         extensions: 'cpp,h'
-  label:
 
+  inspect:
+    runs-on: [self-hosted, windows, x64]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          clean: false
+          lfs: true
+      - name: Download LFS assets
+        run: |
+          git-lfs checkout
+          git-lfs prune
+      - name: Update Submodules
+        run: git submodule update --init -- Plugins
+      - name: Update Engine
+        run: |
+          .\PBSync.exe --sync engine
+      - name: Generate Project Files
+        run: |
+          .\PBSync.exe --build sln
+        env:
+          CI_SKIP_DISTRIBUTION: "1"
+      - name: Mark Adaptive Build
+        run: |
+          git reset --soft origin/$Env:GITHUB_BASE_REF
+      - name: Build
+        run: |
+          .\PBSync.exe --build source
+        env:
+          CI_SKIP_DISTRIBUTION: "1"
+      - name: Code Inspection
+        run: |
+          .\PBSync.exe --build inspect
+
+  label:
     runs-on: ubuntu-latest
 
     steps:
     - name: Labeler
-      uses: actions/labeler@v2
+      uses: actions/labeler@v3
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"

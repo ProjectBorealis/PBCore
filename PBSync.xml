@@ -4,22 +4,31 @@
         <enginebaseversion>4.25-plus</enginebaseversion>
         <uprojectname>ProjectBorealis.uproject</uprojectname>
         <defaultgameinipath>Config/DefaultGame.ini</defaultgameinipath>
+        <userconfig>.ue4v-user</userconfig>
+        <ciconfig>.ue4v-user-ci</ciconfig>
+        <packagepdbs>True</packagepdbs>
     </project>
     <git>
-        <version>2.29.0.vfs.0.0</version>
-        <lfsversion>2.13.1</lfsversion>
-        <gcmversion>2.0.289</gcmversion>
-        <gcmversionsuffix>-beta</gcmversionsuffix>
-        <gcmsuffix>48418</gcmsuffix>
+        <version>2.33.0.vfs.0.0</version>
+        <lfsversion>2.13.3</lfsversion>
+        <gcmversion>2.0.475</gcmversion>
+        <gcmversionsuffix></gcmversionsuffix>
+        <gcmsuffix>64295</gcmsuffix>
         <expectedbranch>promoted</expectedbranch>
         <url>[REDACTED]</url>
+        <branches>
+            <branch>main</branch>
+            <branch>trunk</branch>
+            <branch>promoted</branch>
+        </branches>
         <checksumfile>.md5</checksumfile>
     </git>
     <versionator>
-        <userconfig>.ue4v-user</userconfig>
-        <ciconfig>.ue4v-user-ci</ciconfig>
         <defaultbundle>[REDACTED]</defaultbundle>
         <cibundle>[REDACTED]</cibundle>
+        <engineprefix>PB</engineprefix>
+        <enginetype>ue4</enginetype>
+        <uses_gcs>True</uses_gcs>
     </versionator>
     <log>
         <file>pbsync_log.txt</file>
@@ -29,4 +38,11 @@
         <stagedir>Saved/StagedBuilds</stagedir>
         <drm>Saved/StagedBuilds/WindowsNoEditor/ProjectBorealis/Binaries/Win64</drm>
     </dispatch>
+    <resharper>
+        <version>2021.1.5</version>
+    </resharper>
+	<msg>
+        <git_instructions>[REDACTED]</git_instructions>
+        <support_channel>#tech-support</support_channel>
+    </msg>
 </config>

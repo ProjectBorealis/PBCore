@@ -1,7 +1,7 @@
 style: github
 template: CHANGELOG.tpl.md
 info:
-  title: CHANGELOG
+  title: ""
   repository_url: [REDACTED]
 options:
   commits:

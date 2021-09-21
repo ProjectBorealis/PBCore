@@ -13,7 +13,6 @@
 				"CoreUObject",
 				"AIModule",
 				"AnimationSharing",
-				"ApexDestruction",
 				"IAUS",
 				"GameplayAbilities"
 			]
@@ -21,14 +20,20 @@
 		{
 			"Name": "ProjectBorealisEditor",
 			"Type": "Editor",
-			"LoadingPhase": "PreDefault"
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "IAUS",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "EasyMultiSave",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [
-		{
-			"Name": "ApexDestruction",
-			"Enabled": true
-		},
 		{
 			"Name": "AndroidDeviceProfileSelector",
 			"Enabled": false
@@ -39,10 +44,6 @@
 		},
 		{
 			"Name": "AndroidMoviePlayer",
-			"Enabled": false
-		},
-		{
-			"Name": "OnlineSubsystemNull",
 			"Enabled": false
 		},
 		{
@@ -182,8 +183,7 @@
 		},
 		{
 			"Name": "FactionsExtension",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/29a33bd0c38e4b8f9626f495bb47dca8"
+			"Enabled": true
 		},
 		{
 			"Name": "RenderDocPlugin",
@@ -290,10 +290,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "MediaCompositing",
-			"Enabled": false
-		},
-		{
 			"Name": "VariantManagerContent",
 			"Enabled": false
 		},
@@ -330,46 +326,32 @@
 			"Enabled": true
 		},
 		{
-			"Name": "DiscordRpc",
-			"Enabled": true
-		},
-		{
 			"Name": "EditorScriptingUtilities",
 			"Enabled": true
 		},
 		{
-			"Name": "IAUS",
+			"Name": "DonAINavigation",
 			"Enabled": true
 		},
 		{
-			"Name": "DonAINavigation",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/81b4bd085c8c41508edfeb160b6ddf62"
-		},
-		{
 			"Name": "ElectronicNodes",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/5cb2a394d0c04e73891762be4cbd7216"
+			"Enabled": true
 		},
 		{
 			"Name": "ConsoleEnhanced",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/86123c85a4474d609c5cef8a7fc5786b"
+			"Enabled": true
 		},
 		{
 			"Name": "ObjectPool",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/e3c6aea892b748eb9e2241b9c4b74d36"
+			"Enabled": true
 		},
 		{
 			"Name": "DonMeshPainting",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/d0ef1f750b5246b297d084b6f8355c13"
+			"Enabled": true
 		},
 		{
 			"Name": "KlianGorePlugin",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/58a11c5d7b5047cfbbdc6748c00533f1"
+			"Enabled": true
 		},
 		{
 			"Name": "Paper2D",
@@ -438,8 +420,7 @@
 		},
 		{
 			"Name": "NodeGraphAssistant",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/d9baaaeadeaf41dcb52b3f6e134e9514"
+			"Enabled": true
 		},
 		{
 			"Name": "SunPosition",
@@ -451,13 +432,7 @@
 		},
 		{
 			"Name": "PTMTool",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/946185f2400d4be9b8d4190e95df86c8"
-		},
-		{
-			"Name": "EasyMultiSave",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/7232621c23174bbbbb64c7bfb6583f6f"
+			"Enabled": true
 		},
 		{
 			"Name": "SceneProtocol",
@@ -471,23 +446,20 @@
 		},
 		{
 			"Name": "OptickPlugin",
-			"Enabled": true,
+			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/95c078f6fa924b2b82fd8f281e04850f"
 		},
 		{
 			"Name": "RichTextBlockInlineDecorator",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/e3be7a5e9bb445eb92b54a2ab8571b07"
+			"Enabled": true
 		},
 		{
 			"Name": "SplitPlugin",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/b322635f6e3b4727a77176b6070cdbe9"
+			"Enabled": true
 		},
 		{
 			"Name": "VertexAnimToolset",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/d998b22372a44975b312e85cf663bbab"
+			"Enabled": true
 		},
 		{
 			"Name": "MultiUserClient",
@@ -551,8 +523,7 @@
 		},
 		{
 			"Name": "ACLPlugin",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/993b51e29e9a48d0b3fb449645b82cb6"
+			"Enabled": true
 		},
 		{
 			"Name": "Substance",
@@ -561,13 +532,11 @@
 		},
 		{
 			"Name": "LDAssistant",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/51c5a9a0d5f84beba23aab69bed8d28c"
+			"Enabled": true
 		},
 		{
 			"Name": "Linter",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/ca0639af6339476da86fa3bcf15de8ec"
+			"Enabled": true
 		},
 		{
 			"Name": "SplineSnappingTool",
@@ -595,10 +564,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "TraceSourceFilters",
-			"Enabled": true
-		},
-		{
 			"Name": "TraceDataFilters",
 			"Enabled": true
 		},
@@ -615,26 +580,11 @@
 			"Enabled": true
 		},
 		{
-			"Name": "modio",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/1ab22ed2961a4cc19b9151bd072df998"
-		},
-		{
 			"Name": "RiderLink",
 			"Enabled": true
 		},
 		{
 			"Name": "WidgetThumbs",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/c81cb24afdbb4ae5bddc3a4f8ac4eecd"
-		},
-		{
-			"Name": "GitCentral",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/0a04519938924b11b2423584c1a02d51"
-		},
-		{
-			"Name": "DiscordUE4",
 			"Enabled": true
 		},
 		{
@@ -648,10 +598,6 @@
 		{
 			"Name": "RemoteImport",
 			"Enabled": true
-		},
-		{
-			"Name": "ExampleDeviceProfileSelector",
-			"Enabled": false
 		},
 		{
 			"Name": "ChaosEditor",
@@ -681,6 +627,23 @@
 			"Name": "EditorScriptingTools",
 			"Enabled": true,
 			"MarketplaceURL": "http://ue4resources.com"
+		},
+		{
+			"Name": "DiscordGameSDK",
+			"Enabled": true
+		},
+		{
+			"Name": "PowerIK",
+			"Enabled": true,
+			"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/power-ik"
+		},
+		{
+			"Name": "Composure",
+			"Enabled": true
+		},
+		{
+			"Name": "CompositePlane",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [

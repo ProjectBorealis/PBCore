@@ -68,12 +68,12 @@
 	manyFiles = true
 	experimental = true
 [alias]
-	fm = fetch origin main
-	ro = rebase origin/main
+	fm = !git fetch origin ${1-main}
+	ro = !git rebase origin/${1-main} && true
 	pf = push --force-with-lease --force-if-includes
-	up = !git fm && git ro
+	up = !git fm ${1-main} && git ro ${1-main}
 	send = !git add -A Source && git commit -a && git push
-	pup = !git up && git pf
+	pup = !git up ${1-main} && git pf
 	s = -c color.status=always status -sb
 	state = "!f(){ \
 				deco_bold='\\x1b[1m'; \

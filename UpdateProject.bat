@@ -5,7 +5,7 @@ CALL :CHECK_FAIL
 for /f %%w in ('git rev-parse --abbrev-ref HEAD') do set branch=%%w
 git fetch --no-tags origin %branch%
 CALL :CHECK_FAIL
-git restore -qWSs origin/%branch% -- PBSync.exe PBSync.xml
+git restore -qWs origin/%branch% -- PBSync.exe PBSync.xml
 CALL :CHECK_FAIL
 IF EXIST "PBSyncTemp" rd /s /q PBSyncTemp
 CALL :CHECK_FAIL
@@ -14,7 +14,8 @@ if NOT ["%errorlevel%"]==["1"] (
     pause
     exit %errorlevel%
 )
-git restore -qWSs HEAD -- PBSync.exe PBSync.xml
+git restore -q -- PBSync.exe PBSync.xml
+git update-index -- PBSync.exe PBSync.xml
 CALL :CHECK_FAIL
 PBSyncTemp\PBSync.exe --config PBSyncTemp/PBSync.xml --sync all
 CALL :CHECK_FAIL

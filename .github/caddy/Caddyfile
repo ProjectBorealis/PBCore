@@ -1,3 +1,6 @@
+{
+	admin off
+}
 http://localhost:2004
 root * ./Documentation/html
 file_server

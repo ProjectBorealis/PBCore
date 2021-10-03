@@ -14,7 +14,7 @@
 	fscache = true
 	checkStat = minimal
 	trustctime = false
-	useBuiltinFSMonitor = true
+	useBuiltinFSMonitor = false
 [commit]
 	template = .github/git-hooks/gitmessage.txt
 [gc]
@@ -98,7 +98,6 @@
 	full-verify = fsck --full --strict -v --progress
 [checkout]
 	optimizenewbranch = true
-	workers = 0
 [am]
 	keepcr = true
 [reset]

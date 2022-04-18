@@ -4,7 +4,7 @@ set found="%ERRORLEVEL%"
 if NOT %found%=="0" (
 	start /MIN "Docs server" ".github\caddy\caddy.exe" run --config .github/caddy/Caddyfile
 )
-start http://localhost:2004
+start http://localhost:9005
 if NOT %found%=="0" (
 	color 06
 	echo Docs started. Press any key to exit...

@@ -19,7 +19,7 @@ jobs:
         extensions: 'cpp,h'
 
   inspect:
-    runs-on: [self-hosted, windows, x64]
+    runs-on: [self-hosted, windows, x64, working]
 
     steps:
       - uses: actions/checkout@v2
@@ -31,16 +31,9 @@ jobs:
         run: |
           git-lfs checkout
           git-lfs prune
-      - name: Update Submodules
-        run: git submodule update --init -- Plugins
       - name: Update Engine
         run: |
           .\PBSync.exe --sync engine
-      - name: Generate Project Files
-        run: |
-          .\PBSync.exe --build sln
-        env:
-          CI_SKIP_DISTRIBUTION: "1"
       - name: Mark Adaptive Build
         run: |
           git reset --soft origin/$Env:GITHUB_BASE_REF

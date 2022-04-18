@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "ue4v:4.25-plus-PB-[REDACTED]",
-	"Category": "",
-	"Description": "",
+	"EngineAssociation": "uev:4.27-PB-[REDACTED]",
+	"Category": "Games",
+	"Description": "Project Borealis: the fan-game aiming to create the long awaited 3rd episode of the Half-Life 2 episodic trilogy",
 	"Modules": [
 		{
 			"Name": "ProjectBorealis",
@@ -13,18 +13,12 @@
 				"CoreUObject",
 				"AIModule",
 				"AnimationSharing",
-				"IAUS",
 				"GameplayAbilities"
 			]
 		},
 		{
 			"Name": "ProjectBorealisEditor",
 			"Type": "Editor",
-			"LoadingPhase": "Default"
-		},
-		{
-			"Name": "IAUS",
-			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		},
 		{
@@ -278,10 +272,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "TimeSynth",
-			"Enabled": true
-		},
-		{
 			"Name": "SteamAudio",
 			"Enabled": true
 		},
@@ -354,10 +344,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "Paper2D",
-			"Enabled": false
-		},
-		{
 			"Name": "LiveLink",
 			"Enabled": true
 		},
@@ -366,20 +352,8 @@
 			"Enabled": true
 		},
 		{
-			"Name": "MatineeToLevelSequence",
-			"Enabled": false
-		},
-		{
-			"Name": "HoudiniNiagara",
-			"Enabled": true
-		},
-		{
 			"Name": "LauncherChunkInstaller",
 			"Enabled": false
-		},
-		{
-			"Name": "WebMMedia",
-			"Enabled": true
 		},
 		{
 			"Name": "SampleToolsEditorMode",
@@ -415,8 +389,7 @@
 		},
 		{
 			"Name": "LightMapUEr",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3e5c949daaab494fb5dbf54b29b0d38b"
+			"Enabled": true
 		},
 		{
 			"Name": "NodeGraphAssistant",
@@ -435,19 +408,12 @@
 			"Enabled": true
 		},
 		{
-			"Name": "SceneProtocol",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/7f317bcd79c5421d9af437b9165f55c2"
-		},
-		{
 			"Name": "MultiPackerRedux",
-			"Enabled": true,
-			"MarketplaceURL": "https://ue/marketplace/content/931a1abd52cf4147a40222c4125ba145"
+			"Enabled": true
 		},
 		{
 			"Name": "OptickPlugin",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/95c078f6fa924b2b82fd8f281e04850f"
+			"Enabled": true
 		},
 		{
 			"Name": "RichTextBlockInlineDecorator",
@@ -526,11 +492,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "Substance",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/2f6439c2f9584f49809d9b13b16c2ba4"
-		},
-		{
 			"Name": "LDAssistant",
 			"Enabled": true
 		},
@@ -572,10 +533,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "ShallowWater",
-			"Enabled": true
-		},
-		{
 			"Name": "Volumetrics",
 			"Enabled": true
 		},
@@ -589,14 +546,10 @@
 		},
 		{
 			"Name": "HammUEr",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "StaticMeshEditorExtension",
-			"Enabled": true
-		},
-		{
-			"Name": "RemoteImport",
 			"Enabled": true
 		},
 		{
@@ -625,8 +578,7 @@
 		},
 		{
 			"Name": "EditorScriptingTools",
-			"Enabled": true,
-			"MarketplaceURL": "http://ue4resources.com"
+			"Enabled": true
 		},
 		{
 			"Name": "DiscordGameSDK",
@@ -634,15 +586,255 @@
 		},
 		{
 			"Name": "PowerIK",
-			"Enabled": true,
-			"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/power-ik"
+			"Enabled": true
 		},
 		{
 			"Name": "Composure",
 			"Enabled": true
 		},
 		{
-			"Name": "CompositePlane",
+			"Name": "GameplayCameras",
+			"Enabled": true
+		},
+		{
+			"Name": "XGEController",
+			"Enabled": false
+		},
+		{
+			"Name": "PhysicalLayout",
+			"Enabled": true
+		},
+		{
+			"Name": "AssetBuilderTools",
+			"Enabled": true
+		},
+		{
+			"Name": "AssetSearch",
+			"Enabled": true
+		},
+		{
+			"Name": "DarkerNodes",
+			"Enabled": false
+		},
+		{
+			"Name": "GPULightmass",
+			"Enabled": true
+		},
+		{
+			"Name": "LogViewer",
+			"Enabled": true
+		},
+		{
+			"Name": "MotionTrailEditorMode",
+			"Enabled": true
+		},
+		{
+			"Name": "GizmoEdMode",
+			"Enabled": true
+		},
+		{
+			"Name": "GizmoFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "OrientedCapsule",
+			"Enabled": true
+		},
+		{
+			"Name": "Reflex",
+			"Enabled": true
+		},
+		{
+			"Name": "ActorPalette",
+			"Enabled": true
+		},
+		{
+			"Name": "ColorCorrectRegions",
+			"Enabled": true
+		},
+		{
+			"Name": "FullBodyIK",
+			"Enabled": true
+		},
+		{
+			"Name": "ModularGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "CustomizableSequencerTracks",
+			"Enabled": true
+		},
+		{
+			"Name": "VirtualHeightfieldMesh",
+			"Enabled": true
+		},
+		{
+			"Name": "PythonAutomationTest",
+			"Enabled": true
+		},
+		{
+			"Name": "RHITests",
+			"Enabled": true
+		},
+		{
+			"Name": "OpenXRHandTracking",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"HoloLens",
+				"Android"
+			]
+		},
+		{
+			"Name": "OpenXREyeTracker",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"HoloLens",
+				"Android"
+			]
+		},
+		{
+			"Name": "OpenXR",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"Android",
+				"HoloLens"
+			]
+		},
+		{
+			"Name": "Water",
+			"Enabled": true
+		},
+		{
+			"Name": "BinkMedia",
+			"Enabled": true
+		},
+		{
+			"Name": "WmfMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "WebMMoviePlayer",
+			"Enabled": false
+		},
+		{
+			"Name": "WindowsMoviePlayer",
+			"Enabled": false
+		},
+		{
+			"Name": "CascadeToNiagaraConverter",
+			"Enabled": true
+		},
+		{
+			"Name": "GameFeatures",
+			"Enabled": true
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "ULink",
+			"Enabled": true
+		},
+		{
+			"Name": "ProInstanceToolsPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "LevelStreamAssistant",
+			"Enabled": true
+		},
+		{
+			"Name": "LuminPlatformFeatures",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Lumin"
+			]
+		},
+		{
+			"Name": "ImpostorBaker",
+			"Enabled": true
+		},
+		{
+			"Name": "MacGraphicsSwitching",
+			"Enabled": false
+		},
+		{
+			"Name": "MatineeToLevelSequence",
+			"Enabled": false
+		},
+		{
+			"Name": "MatBatchUEr",
+			"Enabled": true
+		},
+		{
+			"Name": "VICODynamicsPlugin",
+			"Enabled": false
+		},
+		{
+			"Name": "Prefabricator",
+			"Enabled": true
+		},
+		{
+			"Name": "FSR",
+			"Enabled": true
+		},
+		{
+			"Name": "DLSS",
+			"Enabled": false,
+			"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/nvidia-dlss"
+		},
+		{
+			"Name": "RTXGI",
+			"Enabled": true
+		},
+		{
+			"Name": "AssetsCleaner",
+			"Enabled": true
+		},
+		{
+			"Name": "DevMenu",
+			"Enabled": false
+		},
+		{
+			"Name": "Debug",
+			"Enabled": true
+		},
+		{
+			"Name": "CircularDependenciesDetector",
+			"Enabled": true
+		},
+		{
+			"Name": "StackBasedFSM",
+			"Enabled": true
+		},
+		{
+			"Name": "SkinnedDecalComponent",
+			"Enabled": true
+		},
+		{
+			"Name": "MagicNode",
+			"Enabled": true
+		},
+		{
+			"Name": "NRD",
+			"Enabled": true
+		},
+		{
+			"Name": "IAUS",
+			"Enabled": true
+		},
+		{
+			"Name": "FillDDCForPIE",
 			"Enabled": true
 		}
 	],

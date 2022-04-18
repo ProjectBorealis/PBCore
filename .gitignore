@@ -42,6 +42,7 @@ PBGet/*-*
 # Visual Studio 2015/2017 cache/options directory
 /.vs
 /.vscode
+/*.code-workspace
 
 # User-specific files
 *.suo
@@ -214,12 +215,13 @@ Backup/*
 *.png
 
 # some PNGs should be here
-!Content/Splash/Splash.png
-!Content/Splash/EdSplash.png
+!Content/Splash/Splash*.png
+!Content/Splash/EdSplash*.png
 !Content/Editor/Icons/**/*.png
 !ProjectBorealis.png
 !Build/Linux/Application.png
 !Documentation/**/*.png
+!.github/doxygen/logo.png
 
 ## Audio (do not ignore FMOD assets)
 *.wav
@@ -230,6 +232,11 @@ Backup/*
 !fmod/**/*.mp3
 !fmod/**/*.ogg
 !fmod/**/*.flac
+
+## Videos (except Bink!)
+*.webm
+*.mp4
+*.wmv
 
 # Useless open order logs
 CookerOpenOrder.log
@@ -302,3 +309,7 @@ pythonenv*
 
 # git-chglog
 RELEASE_MSG
+
+# Linux project files
+/Makefile
+/.ignore

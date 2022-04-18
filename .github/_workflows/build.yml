@@ -2,11 +2,10 @@ name: Build
 
 on:
   push:
-    branches: [promoted]
+    branches: [ staging ]
     paths:
       - ProjectBorealis.uproject
       - Source/**
-      - Plugins/**
       - .github/workflows/build.yml
 
 concurrency:
@@ -15,7 +14,8 @@ concurrency:
 
 jobs:
   build:
-    runs-on: [self-hosted, windows, x64]
+    timeout-minutes: 4320
+    runs-on: [self-hosted, windows, x64, working]
 
     steps:
       - uses: actions/checkout@v2
@@ -29,17 +29,13 @@ jobs:
         run: |
           git-lfs checkout
           git-lfs prune
-      - name: Update Submodules
-        run: git submodule update --init -- Plugins
       - name: Update Engine
         run: |
           .\PBSync.exe --sync engine
-      - name: Generate Project Files
-        run: |
-          .\PBSync.exe --build sln
       - name: Clean Binaries
         run: |
-          Remove-Item -Recurse Binaries
+          try { Remove-Item -Path Binaries -Recurse -ErrorAction stop }
+          catch [System.Management.Automation.ItemNotFoundException] { $null }
       - name: Build
         run: |
           .\PBSync.exe --build source
@@ -51,10 +47,10 @@ jobs:
           .\PBSync.exe --build package
       - name: Commit and Push
         run: |
-          git commit -am "chore(version): hotfix release from $Env:GITHUB_SHA"
-          git pull
           git config user.name "Project Borealis"
           git config user.email "info@projectborealis.com"
+          git commit -am "chore(version): hotfix release from $Env:GITHUB_SHA"
+          git pull
           git push
       - name: Release
         run: |

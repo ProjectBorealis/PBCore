@@ -2,14 +2,14 @@ name: promoted -> main
 
 on:
   push:
-    branches: [ promoted ]
+    branches: [ staging ]
 
 jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Merge promoted -> main
+    - name: Merge staging -> main
       uses: everlytic/branch-merge@master
       with:
         target_branch: main

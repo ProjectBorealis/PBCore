@@ -1,0 +1,16 @@
+name: promoted -> main
+
+on:
+  push:
+    branches: [ promoted ]
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Merge promoted -> staging
+      uses: everlytic/branch-merge@master
+      with:
+        target_branch: staging
+        github_token: ${{ secrets.REPO_TOKEN }}

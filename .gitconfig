@@ -43,7 +43,6 @@
 [index]
 	threads = 0
 [merge]
-	conflictstyle = diff3
 	stat = false
 	tool = p4merge_pb
 [blame]
@@ -52,28 +51,24 @@
 	prune = true
 	pruneTags = true
 [help]
-	autoCorrect = 5
+	autoCorrect = prompt
 [pack]
 	threads = 0
 [push]
 	default = current
 [pull]
-	rebase = merges
-	ff = only
+	rebase = true
 [receive]
 	autogc = false
 [rebase]
 	autostash = true
-[feature]
-	manyFiles = true
-	experimental = true
 [alias]
-	fm = !git fetch origin ${1-main}
+	fm = !git fetch origin ${1-main} && true
 	ro = !git rebase origin/${1-main} && true
-	pf = push --force-with-lease --force-if-includes
-	up = !git fm ${1-main} && git ro ${1-main}
+	pf = !git push --force-with-lease --force-if-includes && true
+	up = !git fm ${1-main} && git ro ${1-main} && true
 	send = !git add -A Source && git commit -a && git push
-	pup = !git up ${1-main} && git pf
+	pup = !git up ${1-main} && git pf && true
 	s = -c color.status=always status -sb
 	state = "!f(){ \
 				deco_bold='\\x1b[1m'; \
@@ -108,6 +103,8 @@
 	gcwarning = false
 [difftool]
 	prompt = false
+[diff]
+	algorithm = histogram
 [color]
 	ui = auto
 [color "branch"]
@@ -127,3 +124,7 @@
 	cmd = .github/p4merge/p4merge.exe $BASE $LOCAL $REMOTE $MERGED
 [maintenance]
 	auto = false
+[diff "lfstext"]
+	textconv = cat
+[advice]
+	fetchShowForcedUpdates = false

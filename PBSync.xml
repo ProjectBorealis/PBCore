@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <project>
-        <enginebaseversion>4.25-plus</enginebaseversion>
+        <enginebaseversion>4.27</enginebaseversion>
         <uprojectname>ProjectBorealis.uproject</uprojectname>
         <defaultgameinipath>Config/DefaultGame.ini</defaultgameinipath>
         <userconfig>.ue4v-user</userconfig>
         <ciconfig>.ue4v-user-ci</ciconfig>
-        <packagepdbs>True</packagepdbs>
+        <packagepdbs>False</packagepdbs>
+        <ddckey>[REDACTED]</ddckey>
     </project>
     <git>
-        <version>2.33.0.vfs.0.0</version>
-        <lfsversion>2.13.3</lfsversion>
-        <gcmversion>2.0.475</gcmversion>
-        <gcmversionsuffix></gcmversionsuffix>
-        <gcmsuffix>64295</gcmsuffix>
+        <version>2.35.1.vfs.0.0</version>
+        <lfsversion>3.0.2</lfsversion>
+        <gcmversion>2.0.632</gcmversion>
+        <gcmsuffix>34631</gcmsuffix>
         <expectedbranch>promoted</expectedbranch>
         <url>[REDACTED]</url>
         <branches>
-            <branch>main</branch>
+            <branch>trunk-dev</branch>
             <branch>trunk</branch>
+            <branch>main</branch>
             <branch>promoted</branch>
         </branches>
-        <checksumfile>.md5</checksumfile>
     </git>
     <versionator>
         <defaultbundle>[REDACTED]</defaultbundle>
@@ -39,7 +39,7 @@
         <drm>Saved/StagedBuilds/WindowsNoEditor/ProjectBorealis/Binaries/Win64</drm>
     </dispatch>
     <resharper>
-        <version>2021.1.5</version>
+        <version>2021.3.3</version>
     </resharper>
 	<msg>
         <git_instructions>[REDACTED]</git_instructions>

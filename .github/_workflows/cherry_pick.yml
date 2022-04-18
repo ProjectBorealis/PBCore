@@ -1,0 +1,26 @@
+name: Cherry Pick
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit ref
+        required: true
+
+jobs:
+  cherry_pick:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.REPO_TOKEN }}
+      - name: Cherry Pick
+        run: |
+          git cherry-pick $GIT_CHERRY_PICK_REF
+          git config user.name "Project Borealis"
+          git config user.email "info@projectborealis.com"
+          git push
+        env:
+          GIT_CHERRY_PICK_REF: ${{ github.event.inputs.commit }}

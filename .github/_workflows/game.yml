@@ -8,7 +8,7 @@ on:
         required: true
         default: 'internal'
   push:
-    branches: [promoted]
+    branches: [ promoted ]
     paths:
       - .github/workflows/game.yml
       - Build/**
@@ -27,7 +27,8 @@ concurrency:
 
 jobs:
   game:
-    runs-on: [self-hosted, windows, x64]
+    timeout-minutes: 4320
+    runs-on: [self-hosted, windows, x64, working]
     
     env:
       DISPATCH_APP_ID: ${{ secrets.DISPATCH_APP_ID }}
@@ -46,8 +47,6 @@ jobs:
         run: |
           git-lfs checkout
           git-lfs prune
-      - name: Update Submodules
-        run: git submodule update --init -- Plugins
       - name: Prepare Dispatch
         run: |
           dispatch --version

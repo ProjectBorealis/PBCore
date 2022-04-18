@@ -1,0 +1,16 @@
+name: trunk -> trunk-dev
+
+on:
+  push:
+    branches: [ trunk ]
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Merge trunk -> trunk-dev
+      uses: everlytic/branch-merge@master
+      with:
+        target_branch: trunk-dev
+        github_token: ${{ secrets.REPO_TOKEN }}

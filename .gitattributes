@@ -1,5 +1,6 @@
 [attr]lock filter=lfs diff=lfs merge=binary -text lockable
 [attr]lfs filter=lfs diff=lfs merge=binary -text
+[attr]lfstext filter=lfs diff=lfstext merge=text -text
 # Unreal Engine file types.
 *.uasset lock
 *.umap lock
@@ -13,6 +14,7 @@
 # Binaries
 *.exe lfs
 *.dll lfs
+*.rcc lfs
 # FMOD
 *.bank lfs
 *.wav lfs
@@ -24,6 +26,4 @@
 *.ico lfs
 *.icns lfs
 # Movies
-*.webm lfs
-*.mp4 lfs
-*.wmv lfs
+*.bk2 lfs

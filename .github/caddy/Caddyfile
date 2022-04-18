@@ -1,6 +1,6 @@
 {
 	admin off
 }
-http://localhost:2004
+http://localhost:9005
 root * ./Documentation/html
 file_server

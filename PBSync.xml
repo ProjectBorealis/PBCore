@@ -4,8 +4,8 @@
         <enginebaseversion>4.27</enginebaseversion>
         <uprojectname>ProjectBorealis.uproject</uprojectname>
         <defaultgameinipath>Config/DefaultGame.ini</defaultgameinipath>
-        <userconfig>.ue4v-user</userconfig>
-        <ciconfig>.ue4v-user-ci</ciconfig>
+        <userconfig>.user-sync</userconfig>
+        <ciconfig>.ci-sync</ciconfig>
         <packagepdbs>False</packagepdbs>
         <ddckey>[REDACTED]</ddckey>
     </project>
@@ -42,7 +42,7 @@
         <version>2021.3.3</version>
     </resharper>
 	<msg>
-        <git_instructions>[REDACTED]</git_instructions>
+        <git_instructions>https://github.com/ProjectBorealis/PBCore/wiki/Prerequisites</git_instructions>
         <support_channel>#tech-support</support_channel>
     </msg>
 </config>

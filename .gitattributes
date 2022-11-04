@@ -1,4 +1,5 @@
 [attr]lock filter=lfs diff=lfs merge=binary -text lockable
+[attr]lockonly lockable
 [attr]lfs filter=lfs diff=lfs merge=binary -text
 [attr]lfstext filter=lfs diff=lfstext merge=text -text
 # Unreal Engine file types.

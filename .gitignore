@@ -59,7 +59,6 @@ ipch/
 *.sdf
 *.cachefile
 *.VC.db
-*.VC.VC.opendb
 enc_temp_folder/
 
 # Visual Studio profiler
@@ -70,6 +69,8 @@ enc_temp_folder/
 
 # Visual Studio Trace Files
 *.e2e
+
+*.scor
 
 # ReSharper is a coding add-in
 _ReSharper*/
@@ -170,16 +171,19 @@ Temporary Items
 # Cache files for the editor to use
 /DerivedDataCache
 
-# Localisation intermediate / export files
+# Localization intermediate / export files
 /Content/Localization/**/*.csv
 /Content/Localization/**/*.po
 /Content/Localization/**/*.archive
+
+# Ignore Python script modules
+/Content/Python
 
 # PBSync
 Backup/*
 /pbsync_log.txt
 /pbsync_log*
-/PBSyncTemp
+/PBSyncTemp*
 /.pbsync_err
 
 # Log files written by the Editor for certain systems

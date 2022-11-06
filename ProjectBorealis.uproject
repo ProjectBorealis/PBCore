@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "uev:4.27-PB-[REDACTED]",
+	"EngineAssociation": "uev:4.28-PB-[REDACTED]",
 	"Category": "Games",
 	"Description": "Project Borealis: the fan-game aiming to create the long awaited 3rd episode of the Half-Life 2 episodic trilogy",
 	"Modules": [
@@ -177,7 +177,7 @@
 		},
 		{
 			"Name": "FactionsExtension",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "RenderDocPlugin",
@@ -273,7 +273,7 @@
 		},
 		{
 			"Name": "SteamAudio",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "LightPropagationVolume",
@@ -320,23 +320,11 @@
 			"Enabled": true
 		},
 		{
-			"Name": "DonAINavigation",
-			"Enabled": true
-		},
-		{
 			"Name": "ElectronicNodes",
 			"Enabled": true
 		},
 		{
 			"Name": "ConsoleEnhanced",
-			"Enabled": true
-		},
-		{
-			"Name": "ObjectPool",
-			"Enabled": true
-		},
-		{
-			"Name": "DonMeshPainting",
 			"Enabled": true
 		},
 		{
@@ -404,23 +392,7 @@
 			"Enabled": false
 		},
 		{
-			"Name": "PTMTool",
-			"Enabled": true
-		},
-		{
-			"Name": "MultiPackerRedux",
-			"Enabled": true
-		},
-		{
-			"Name": "OptickPlugin",
-			"Enabled": true
-		},
-		{
 			"Name": "RichTextBlockInlineDecorator",
-			"Enabled": true
-		},
-		{
-			"Name": "SplitPlugin",
 			"Enabled": true
 		},
 		{
@@ -465,14 +437,10 @@
 		},
 		{
 			"Name": "MeshEditor",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "TemplateSequence",
-			"Enabled": true
-		},
-		{
-			"Name": "Designer",
 			"Enabled": true
 		},
 		{
@@ -492,15 +460,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "LDAssistant",
-			"Enabled": true
-		},
-		{
 			"Name": "Linter",
-			"Enabled": true
-		},
-		{
-			"Name": "SplineSnappingTool",
 			"Enabled": true
 		},
 		{
@@ -529,10 +489,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "DataCharts",
-			"Enabled": true
-		},
-		{
 			"Name": "Volumetrics",
 			"Enabled": true
 		},
@@ -550,7 +506,7 @@
 		},
 		{
 			"Name": "StaticMeshEditorExtension",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "ChaosEditor",
@@ -605,10 +561,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "AssetBuilderTools",
-			"Enabled": true
-		},
-		{
 			"Name": "AssetSearch",
 			"Enabled": true
 		},
@@ -621,10 +573,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "LogViewer",
-			"Enabled": true
-		},
-		{
 			"Name": "MotionTrailEditorMode",
 			"Enabled": true
 		},
@@ -634,10 +582,6 @@
 		},
 		{
 			"Name": "GizmoFramework",
-			"Enabled": true
-		},
-		{
-			"Name": "OrientedCapsule",
 			"Enabled": true
 		},
 		{
@@ -711,7 +655,7 @@
 		},
 		{
 			"Name": "Water",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "BinkMedia",
@@ -746,10 +690,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "ProInstanceToolsPlugin",
-			"Enabled": true
-		},
-		{
 			"Name": "LevelStreamAssistant",
 			"Enabled": true
 		},
@@ -773,10 +713,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "MatBatchUEr",
-			"Enabled": true
-		},
-		{
 			"Name": "VICODynamicsPlugin",
 			"Enabled": false
 		},
@@ -785,20 +721,11 @@
 			"Enabled": true
 		},
 		{
-			"Name": "FSR",
-			"Enabled": true
-		},
-		{
 			"Name": "DLSS",
-			"Enabled": false,
-			"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/nvidia-dlss"
+			"Enabled": false
 		},
 		{
 			"Name": "RTXGI",
-			"Enabled": true
-		},
-		{
-			"Name": "AssetsCleaner",
 			"Enabled": true
 		},
 		{
@@ -806,23 +733,7 @@
 			"Enabled": false
 		},
 		{
-			"Name": "Debug",
-			"Enabled": true
-		},
-		{
-			"Name": "CircularDependenciesDetector",
-			"Enabled": true
-		},
-		{
-			"Name": "StackBasedFSM",
-			"Enabled": true
-		},
-		{
 			"Name": "SkinnedDecalComponent",
-			"Enabled": true
-		},
-		{
-			"Name": "MagicNode",
 			"Enabled": true
 		},
 		{
@@ -836,6 +747,29 @@
 		{
 			"Name": "FillDDCForPIE",
 			"Enabled": true
+		},
+		{
+			"Name": "AudioWidgets",
+			"Enabled": true
+		},
+		{
+			"Name": "GenericGraph",
+			"Enabled": false
+		},
+		{
+			"Name": "SteamAudioFMODStudio",
+			"Enabled": false
+		},
+		{
+			"Name": "PostSplashScreen",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"XboxOne"
+			]
+		},
+		{
+			"Name": "ChunkDownloader",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [

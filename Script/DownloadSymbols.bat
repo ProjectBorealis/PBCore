@@ -1,4 +1,4 @@
 @echo off
-pushd ..
+pushd %~dp0..
 "ueversionator.exe"  --with-symbols
 popd

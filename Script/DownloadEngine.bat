@@ -1,4 +1,4 @@
 @echo off
-pushd ..
+pushd %~dp0..
 .\PBSync.exe --sync engine
 popd

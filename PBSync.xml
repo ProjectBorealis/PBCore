@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <project>
-        <enginebaseversion>4.27</enginebaseversion>
+        <enginebaseversion>4.28</enginebaseversion>
         <uprojectname>ProjectBorealis.uproject</uprojectname>
-        <defaultgameinipath>Config/DefaultGame.ini</defaultgameinipath>
-        <userconfig>.user-sync</userconfig>
-        <ciconfig>.ci-sync</ciconfig>
-        <packagepdbs>False</packagepdbs>
         <ddckey>[REDACTED]</ddckey>
     </project>
     <git>
-        <version>2.35.1.vfs.0.0</version>
-        <lfsversion>3.0.2</lfsversion>
-        <gcmversion>2.0.632</gcmversion>
-        <gcmsuffix>34631</gcmsuffix>
+        <version>2.37.1.vfs.0.1</version>
+        <lfsversion>3.2.0</lfsversion>
+        <gcmversion>2.0.785</gcmversion>
         <expectedbranch>promoted</expectedbranch>
         <url>[REDACTED]</url>
         <branches>
@@ -24,25 +19,24 @@
         </branches>
     </git>
     <versionator>
-        <defaultbundle>[REDACTED]</defaultbundle>
-        <cibundle>[REDACTED]</cibundle>
         <engineprefix>PB</engineprefix>
         <enginetype>ue4</enginetype>
         <uses_gcs>True</uses_gcs>
     </versionator>
-    <log>
-        <file>pbsync_log.txt</file>
-    </log>
+    <publish>
+        <publisher>butler</publisher>
+    </publish>
+    <butler>
+        <project>[REDACTED]</project>
+        <manifest>.github/.itch.{0}.toml</manifest>
+    </butler>
     <dispatch>
         <config>.github/dispatch.json</config>
-        <stagedir>Saved/StagedBuilds</stagedir>
-        <drm>Saved/StagedBuilds/WindowsNoEditor/ProjectBorealis/Binaries/Win64</drm>
     </dispatch>
     <resharper>
-        <version>2021.3.3</version>
+        <version>2022.2.3</version>
     </resharper>
 	<msg>
-        <git_instructions>https://github.com/ProjectBorealis/PBCore/wiki/Prerequisites</git_instructions>
         <support_channel>#tech-support</support_channel>
     </msg>
 </config>

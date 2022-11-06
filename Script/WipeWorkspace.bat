@@ -1,6 +1,6 @@
 @echo off
 @setlocal enableextensions enabledelayedexpansion
-pushd ..
+pushd %~dp0..
 IF EXIST ".git\index.lock" DEL /F ".git\index.lock"
 CALL :CHECK_FAIL
 for /f %%w in ('git rev-parse --abbrev-ref HEAD') do set branch=%%w

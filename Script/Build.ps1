@@ -14,6 +14,7 @@ git pull
 .\PBSync.exe --sync engine
 
 $commitHash = git rev-parse --short HEAD | Out-String
+git add .checksum
 git commit -am "chore(version): $version release from $commitHash"
 
 git pull
